@@ -4,7 +4,7 @@ on:
   push:
 
 jobs:
-  tests:
+  backend_tests:
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -40,11 +40,11 @@ jobs:
         cd backend/
         python manage.py test 
 
-  build_and_push_to_docker_hub:
-    name: Push Docker image to DockerHub
+  build_backend_and_push_to_docker_hub:
+    name: Push backend Docker image to DockerHub
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
-    needs: tests
+    needs: backend_tests
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3
@@ -129,7 +129,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     needs: 
-      - build_and_push_to_docker_hub
+      - build_backend_and_push_to_docker_hub
       - build_frontend_and_push_to_docker_hub
       - build_gateway_and_push_to_docker_hub
     steps:
@@ -162,6 +162,7 @@ jobs:
 
   send_message:
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
     needs: deploy
     steps:
     - name: Send message
