@@ -8,14 +8,11 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 SECRET_KEY = os.getenv('DJANGO_KEY', 'django-insecure-cg6*%6d51ef8f#4!r3*$vmxm4)abgjw8mo!4y-q*uq1!4$-89$')
 
 DEBUG = os.getenv('DEBUG_VALUE', 'True')
 
-#ALLOWED_HOSTS = ['84.201.154.209', 'localhost', 'yakitty.sytes.net']
 ALLOWED_HOSTS = os.getenv('APPROVED_HOSTS', ['84.201.154.209', 'localhost', 'yakitty.sytes.net'])
-#ALLOWED_HOSTS = ['123.123.123.123', 'localhost', '<your_domain>']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
