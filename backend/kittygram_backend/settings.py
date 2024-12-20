@@ -1,18 +1,17 @@
 # flake8: noqa
 import os
 from pathlib import Path
+import environ
 
-from dotenv import load_dotenv
-
-load_dotenv()
+env = environ.Env()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.getenv('DJANGO_KEY', 'django-insecure-cg6*%6d51ef8f#4!r3*$vmxm4)abgjw8mo!4y-q*uq1!4$-89$')
+SECRET_KEY = env.str('DJANGO_KEY', default='django-insecure-cg6*%6d51ef8f#4!r3*$vmxm4)abgjw8mo!4y-q*uq1!4$-89$')
 
-DEBUG = os.getenv('DEBUG_VALUE', 'True')
+DEBUG = env.bool('DEBUG_VALUE', default=True)
 
-ALLOWED_HOSTS = os.getenv('APPROVED_HOSTS', ['84.201.154.209', 'localhost', 'yakitty.sytes.net'])
+ALLOWED_HOSTS = env.list('APPROVED_HOSTS', default=['84.201.154.209', 'localhost', 'yakitty.sytes.net'])
 
 INSTALLED_APPS = [
     'django.contrib.admin',
