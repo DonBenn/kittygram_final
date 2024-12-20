@@ -101,30 +101,6 @@ docker compose stop && docker compose up --build
 git clone https://github.com/DonBenn/kittygram_final.git
 ```
 
-```
-cd backend
-```
-
-Cоздать и активировать виртуальное окружение:
-
-```
-python -m venv venv
-```
-
-```
-source venv/Scripts/activate
-```
-
-Установить зависимости из файла requirements.txt:
-
-```
-python -m pip install --upgrade pip
-```
-
-```
-pip install -r requirements.txt
-```
-
 Перейдите в директории для сборки образов и выполните команды:
 
 В терминале в корне проекта Kittygram последовательно выполните команды из листинга; 
